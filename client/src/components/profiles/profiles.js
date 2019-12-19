@@ -5,46 +5,43 @@ import { getProfiles } from '../../redux/actions/profile';
 import ProfileItem from './profileItem'
 import Spinner from '../layout/spinner';
 
-const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
-	useEffect(() => {
-		getProfiles();
-	}, [getProfiles])
+const Profiles = ({ getProfiles, profile: { profiles, loading}}) => {
+  useEffect(() => {
+    getProfiles(); 
+  }, [])
 
-	return (
-<Fragment>
-      {loading ? (
-        <Spinner />
-      ) : (
+  return (
+    <Fragment>
+      { loading ? (<Spinner />) : (
         <Fragment>
           <h1 className='large text-primary'>Developers</h1>
           <p className='lead'>
-            <i className='fab fa-connectdevelop' /> Browse and connect with
-            developers
+            <i className='fab fa-connectdevelop'></i>Browse and connect with anyone
           </p>
           <div className='profiles'>
             {profiles.length > 0 ? (
               profiles.map(profile => (
-                <ProfileItem key={profile._id} profile={profile} />
+                <ProfileItem key={profile._id} profile={profile}/>
               ))
-            ) : (
-              <h4>No profiles found...</h4>
-            )}
+              ): (
+              <h4>No Profiles Found...</h4>
+              )}
           </div>
         </Fragment>
-      )}
+        )}
     </Fragment>
-  );
-};
+  )
+}
 
 Profiles.propTypes = {
   getProfiles: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
-
 const mapStateToProps = state => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps,{ getProfiles })(Profiles);
+export default connect(mapStateToProps, {getProfiles})(Profiles);
+
 
 

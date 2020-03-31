@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Register from '../auth/register';
 import Login from '../auth/login';
+import ForgotPassword from '../auth/forgot-password';
 import Alert from '../layout/alert';
 import Dashboard from '../dashboard/dashboard';
 import CreateProfile from '../profile-forms/create-profile';
@@ -22,8 +23,9 @@ const Routes = () => {
       <Switch>
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
+        <Route exact path='/forgot-password' component={ForgotPassword} />
         <Route exact path='/profiles' component={Profiles} />
-        <Route exact path='/profile/:id' component={Profile} />
+        <PrivateRoute exact path='/profile/:id' component={Profile} />
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
         <PrivateRoute exact path='/create-profile' component={CreateProfile} />
         <PrivateRoute exact path='/edit-profile' component={EditProfile} />
